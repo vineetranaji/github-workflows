@@ -52,5 +52,5 @@ jobs:
         git pull --rebase
         git stash pop
         git add -f logs/output.log
-        git commit -m 'Add logs from GitHub Actions workflow'
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git
+        git commit -m 'Add logs from GitHub Actions workflow' || echo "No changes to commit"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git || echo "Nothing to push"
