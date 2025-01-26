@@ -1,31 +1,163 @@
-name: Example Workflow
+name: Run Python Code
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  schedule:
+    - cron: '0 11 28 1 *'  # Jan 28
+    - cron: '0 11 30 1 *'  # Jan 30
+    - cron: '0 11 1 2 *'   # Feb 1
+    - cron: '0 11 3 2 *'   # Feb 3
+    - cron: '0 11 4 2 *'   # Feb 4
+    - cron: '0 11 6 2 *'   # Feb 6
+    - cron: '0 11 9 2 *'   # Feb 9
+    - cron: '0 11 12 2 *'  # Feb 12
+    - cron: '0 11 16 2 *'  # Feb 16
+    - cron: '0 11 19 2 *'  # Feb 19
+    - cron: '0 11 23 2 *'  # Feb 23
+    - cron: '0 11 27 2 *'  # Feb 27
+    - cron: '0 11 3 3 *'   # Mar 3
+    - cron: '0 11 5 3 *'   # Mar 5
+    - cron: '0 11 6 3 *'   # Mar 6
+    - cron: '0 11 8 3 *'   # Mar 8
+    - cron: '0 11 15 3 *'  # Mar 15
+    - cron: '0 11 17 3 *'  # Mar 17
+    - cron: '0 11 19 3 *'  # Mar 19
+    - cron: '0 11 26 3 *'  # Mar 26
+    - cron: '0 11 28 3 *'  # Mar 28
+    - cron: '0 11 30 3 *'  # Mar 30
+    - cron: '0 11 1 4 *'   # Apr 1
+    - cron: '0 11 4 4 *'   # Apr 4
+    - cron: '0 11 5 4 *'   # Apr 5
+    - cron: '0 11 8 4 *'   # Apr 8
+    - cron: '0 11 9 4 *'   # Apr 9
+    - cron: '0 11 10 4 *'  # Apr 10
+    - cron: '0 11 14 4 *'  # Apr 14
+    - cron: '0 11 18 4 *'  # Apr 18
+    - cron: '0 11 19 4 *'  # Apr 19
+    - cron: '0 11 25 4 *'  # Apr 25
+    - cron: '0 11 28 4 *'  # Apr 28
+    - cron: '0 11 30 4 *'  # Apr 30
+    - cron: '0 11 3 5 *'   # May 3
+    - cron: '0 11 5 5 *'   # May 5
+    - cron: '0 11 7 5 *'   # May 7
+    - cron: '0 11 8 5 *'   # May 8
+    - cron: '0 11 15 5 *'  # May 15
+    - cron: '0 11 16 5 *'  # May 16
+    - cron: '0 11 18 5 *'  # May 18
+    - cron: '0 11 19 5 *'  # May 19
+    - cron: '0 11 26 5 *'  # May 26
+    - cron: '0 11 28 5 *'  # May 28
+    - cron: '0 11 29 5 *'  # May 29
+    - cron: '0 11 1 6 *'   # Jun 1
+    - cron: '0 11 5 6 *'   # Jun 5
+    - cron: '0 11 6 6 *'   # Jun 6
+    - cron: '0 11 9 6 *'   # Jun 9
+    - cron: '0 11 10 6 *'  # Jun 10
+    - cron: '0 11 14 6 *'  # Jun 14
+    - cron: '0 11 15 6 *'  # Jun 15
+    - cron: '0 11 19 6 *'  # Jun 19
+    - cron: '0 11 28 6 *'  # Jun 28
+    - cron: '0 11 30 6 *'  # Jun 30
+    - cron: '0 11 1 7 *'   # Jul 1
+    - cron: '0 11 2 7 *'   # Jul 2
+    - cron: '0 11 3 7 *'   # Jul 3
+    - cron: '0 11 5 7 *'   # Jul 5
+    - cron: '0 11 8 7 *'   # Jul 8
+    - cron: '0 11 10 7 *'  # Jul 10
+    - cron: '0 11 13 7 *'  # Jul 13
+    - cron: '0 11 14 7 *'  # Jul 14
+    - cron: '0 11 18 7 *'  # Jul 18
+    - cron: '0 11 19 7 *'  # Jul 19
+    - cron: '0 11 22 7 *'  # Jul 22
+    - cron: '0 11 25 7 *'  # Jul 25
+    - cron: '0 11 28 7 *'  # Jul 28
+    - cron: '0 11 30 7 *'  # Jul 30
+    - cron: '0 11 1 8 *'   # Aug 1
+    - cron: '0 11 2 8 *'   # Aug 2
+    - cron: '0 11 6 8 *'   # Aug 6
+    - cron: '0 11 14 8 *'  # Aug 14
+    - cron: '0 11 18 8 *'  # Aug 18
+    - cron: '0 11 19 8 *'  # Aug 19
+    - cron: '0 11 26 8 *'  # Aug 26
+    - cron: '0 11 28 8 *'  # Aug 28
+    - cron: '0 11 1 9 *'   # Sep 1
+    - cron: '0 11 3 9 *'   # Sep 3
+    - cron: '0 11 4 9 *'   # Sep 4
+    - cron: '0 11 6 9 *'   # Sep 6
+    - cron: '0 11 7 9 *'   # Sep 7
+    - cron: '0 11 9 9 *'   # Sep 9
+    - cron: '0 11 12 9 *'  # Sep 12
+    - cron: '0 11 16 9 *'  # Sep 16
+    - cron: '0 11 19 9 *'  # Sep 19
+    - cron: '0 11 23 9 *'  # Sep 23
+    - cron: '0 11 27 9 *'  # Sep 27
+    - cron: '0 11 29 9 *'  # Sep 29
+    - cron: '0 11 1 10 *'  # Oct 1
+    - cron: '0 11 3 10 *'  # Oct 3
+    - cron: '0 11 4 10 *'  # Oct 4
+    - cron: '0 11 6 10 *'  # Oct 6
+    - cron: '0 11 7 10 *'  # Oct 7
+    - cron: '0 11 9 10 *'  # Oct 9
+    - cron: '0 11 12 10 *' # Oct 12
+    - cron: '0 11 15 10 *' # Oct 15
+    - cron: '0 11 16 10 *' # Oct 16
+    - cron: '0 11 19 10 *' # Oct 19
+    - cron: '0 11 24 10 *' # Oct 24
+    - cron: '0 11 28 10 *' # Oct 28
+    - cron: '0 11 1 11 *'  # Nov 1
+    - cron: '0 11 2 11 *'  # Nov 2
+    - cron: '0 11 3 11 *'  # Nov 3
+    - cron: '0 11 4 11 *'  # Nov 4
+    - cron: '0 11 6 11 *'  # Nov 6
+    - cron: '0 11 9 11 *'  # Nov 9
+    - cron: '0 11 12 11 *' # Nov 12
+    - cron: '0 11 15 11 *' # Nov 15
+    - cron: '0 11 16 11 *' # Nov 16
+    - cron: '0 11 19 11 *' # Nov 19
+    - cron: '0 11 23 11 *' # Nov 23
+    - cron: '0 11 27 11 *' # Nov 27
+    - cron: '0 11 1 12 *'  # Dec 1
+    - cron: '0 11 5 12 *'  # Dec 5
+    - cron: '0 11 6 12 *'  # Dec 6
+    - cron: '0 11 8 12 *'  # Dec 8
+    - cron: '0 11 11 12 *' # Dec 11
+    - cron: '0 11 14 12 *' # Dec 14
+    - cron: '0 11 15 12 *' # Dec 15
+    - cron: '0 11 19 12 *' # Dec 19
+    - cron: '0 11 24 12 *' # Dec 24
+    - cron: '0 11 30 12 *' # Dec 30
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
-  build:
+  run-code:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        repository: vineetranaji/python-day-to-day-code
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Run Python scripts
+      run: |
+        mkdir -p logs
+        echo "$(date '+%d %b %Y at %H:%M')" >> logs/output.log
+        for script in tasks/*.py; do
+          echo "Running $script" >> logs/output.log
+          python "$script" >> logs/output.log 2>&1 || exit 1
+        done
 
-      - name: Run tests
-        run: npm test
-
-      - name: Build project
-        run: npm run build
+    - name: Commit and push logs
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add -f logs/output.log
+        git commit -m 'Add logs from GitHub Actions workflow'
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/python-day-to-day-code.git
