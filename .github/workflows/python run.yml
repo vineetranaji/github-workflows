@@ -22,10 +22,18 @@ jobs:
       contents: write  # Ensure the token has write permissions
 
     steps:
-    - name: Checkout repository
+    - name: Checkout python-day-to-day-code repository
       uses: actions/checkout@v2
       with:
         repository: vineetranaji/python-day-to-day-code
+        path: python-day-to-day-code
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Checkout github-workflows repository
+      uses: actions/checkout@v2
+      with:
+        repository: vineetranaji/github-workflows
+        path: github-workflows
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Set up Python
@@ -35,22 +43,20 @@ jobs:
 
     - name: Run Python scripts
       run: |
-        mkdir -p logs
-        echo "$(date '+%d %b %Y at %H:%M')" >> logs/output.log
-        for script in tasks/*.py; do
-          echo "Running $script" >> logs/output.log
-          python "$script" >> logs/output.log 2>&1 || exit 1
+        mkdir -p github-workflows/logs
+        echo "$(date '+%d %b %Y at %H:%M')" >> github-workflows/logs/output.log
+        for script in python-day-to-day-code/tasks/*.py; do
+          echo "Running $script" >> github-workflows/logs/output.log
+          python "$script" >> github-workflows/logs/output.log 2>&1 || exit 1
         done
 
     - name: Commit and push logs
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        cd github-workflows
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git stash
-        git pull --rebase
-        git stash pop
         git add -f logs/output.log
         git commit -m 'Add logs from GitHub Actions workflow' || echo "No changes to commit"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git || echo "Nothing to push"
