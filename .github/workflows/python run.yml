@@ -48,10 +48,6 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git stash
-        git pull --rebase
-        git stash pop
         git add -f logs/output.log
-        git commit -m 'Add logs from GitHub Actions workflow' || echo "No changes to commit"
-        git pull --rebase
+        git commit -m 'Add logs from GitHub Actions workflow'
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git || echo "Nothing to push"
