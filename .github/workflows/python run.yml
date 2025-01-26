@@ -28,6 +28,7 @@ jobs:
         repository: vineetranaji/python-day-to-day-code
         path: python-day-to-day-code
         token: ${{ secrets.GITHUB_TOKEN }}
+      # This step checks out the python-day-to-day-code repository
 
     - name: Checkout github-workflows repository
       uses: actions/checkout@v2
@@ -35,11 +36,13 @@ jobs:
         repository: vineetranaji/github-workflows
         path: github-workflows
         token: ${{ secrets.GITHUB_TOKEN }}
+      # This step checks out the github-workflows repository
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+      # This step sets up the Python environment
 
     - name: Run Python scripts
       run: |
@@ -49,6 +52,7 @@ jobs:
           echo "Running $script" >> github-workflows/logs/output.log
           python "$script" >> github-workflows/logs/output.log 2>&1 || exit 1
         done
+      # This step runs the Python scripts and logs the output
 
     - name: Commit and push logs
       env:
@@ -60,3 +64,4 @@ jobs:
         git add -f logs/output.log
         git commit -m 'Add logs from GitHub Actions workflow' || echo "No changes to commit"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git || echo "Nothing to push"
+      # This step commits and pushes the logs to the github-workflows repository
