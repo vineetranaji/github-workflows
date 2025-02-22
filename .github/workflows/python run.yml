@@ -59,8 +59,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd github-workflows
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git config --global user.name 'Vineet Rana'
+        git config --global user.email 'vineetrana2208@gmail.com'  # Use your GitHub email
         git add -f logs/output.log
         git commit -m 'Add logs from GitHub Actions workflow' || echo "No changes to commit"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git || echo "Nothing to push"
