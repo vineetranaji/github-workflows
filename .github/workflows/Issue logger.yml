@@ -2,13 +2,7 @@ name: Issue Logger
 
 on:
   issues:
-    types: [opened]  # Runs when a new issue is created
-  workflow_dispatch:  # Allows manual triggering
-  schedule:          # checking every month
-    - cron: '0 11 10 * *'   # Random day 1
-    - cron: '0 11 20 * *'   # Random day 2
-    - cron: '0 11 30 * *'   # Random day 3
-    - cron: '0 11 1 * *'   # Random day 4
+    types: [opened, reopened]  # Runs when a new issue is created
 
 jobs:
   log-issue:
