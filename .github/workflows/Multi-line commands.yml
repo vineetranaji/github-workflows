@@ -1,4 +1,4 @@
-name: Second Workflow
+name: Multi-line commands
 on: workflow_dispatch
 jobs:
   first-job:
