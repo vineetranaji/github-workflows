@@ -31,7 +31,12 @@ jobs:
       # This step checks out the python-day-to-day-code repository
 
     - name: Install dependencies
-      run: pip install -r python-day-to-day-code/requirements.txt
+      run: |
+          pip install --upgrade pip
+          pip install -r python-day-to-day-code/requirements.txt
+
+    - name: Ensure Python scripts have execution permission
+      run: chmod +x python-day-to-day-code/tasks/*.py
       
     - name: Checkout github-workflows repository
       uses: actions/checkout@v2
@@ -53,7 +58,7 @@ jobs:
         echo "$(date '+%d %b %Y at %H:%M')" >> github-workflows/logs/output.log
         for script in python-day-to-day-code/tasks/*.py; do
           echo "Running $script" >> github-workflows/logs/output.log
-          python "$script" >> github-workflows/logs/output.log 2>&1 || exit 1
+          python "$script" >> github-workflows/logs/output.log 2>> github-workflows/logs/error.log || exit 1
         done
       # This step runs the Python scripts and logs the output
 
