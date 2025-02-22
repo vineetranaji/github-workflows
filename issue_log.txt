@@ -1,3 +1,6 @@
 Issue #1 - Issue logger workflow
 Issue logger workflow
 ------------------------
+Issue #2 - Issue logger workflow
+Issue logger workflow
+------------------------
