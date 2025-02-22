@@ -30,6 +30,9 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
       # This step checks out the python-day-to-day-code repository
 
+    - name: Install dependencies
+      run: pip install -r github-workflows/logs/requirements.txt
+      
     - name: Checkout github-workflows repository
       uses: actions/checkout@v2
       with:
