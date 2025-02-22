@@ -1,0 +1,52 @@
+name: Issue Logger
+
+on:
+  issues:
+    types: [opened]  # Runs when a new issue is created
+  workflow_dispatch:  # Allows manual triggering
+  schedule:          # checking every month
+    - cron: '0 11 10 * *'   # Random day 1
+    - cron: '0 11 20 * *'   # Random day 2
+    - cron: '0 11 30 * *'   # Random day 3
+    - cron: '0 11 1 * *'   # Random day 4
+
+jobs:
+  log-issue:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Required to push changes
+      issues: write    # Required to modify issues
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Add "Internal" Label to Issue
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.rest.issues.addLabels({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.payload.issue.number,
+            labels: ["Internal"]
+          });
+
+    - name: Create or Update Issue Log
+      run: |
+        touch issue_log.txt  # Ensure file exists
+        echo "Issue #${{ github.event.issue.number }} - ${{ github.event.issue.title }}" >> issue_log.txt
+        echo "${{ github.event.issue.body }}" >> issue_log.txt
+        echo "------------------------" >> issue_log.txt
+
+    - name: Commit and Push Changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.name 'Vineet Rana'
+        git config --global user.email 'vineetrana2208@gmail.com'   # Use your GitHub email
+        git add issue_log.txt
+        git commit -m "Log Issue #${{ github.event.issue.number }}"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Nothing to push"
