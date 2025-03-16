@@ -1,0 +1,20 @@
+name: Check GitHub Profile Availability
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  check-profile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if GitHub profile URL is accessible
+        run: |
+          STATUS=$(curl -o /dev/null -s -w "%{http_code}" https://github.com/vineetranaji)
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Profile is available ✅"
+          else
+            echo "Profile is NOT available ❌ (HTTP Status: $STATUS)"
+            exit 1
+          fi
