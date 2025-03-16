@@ -1,4 +1,4 @@
-name: Check GitHub Profile Availability
+name: Site Availability Checker
 
 on:
   schedule:
