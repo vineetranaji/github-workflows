@@ -3,15 +3,19 @@ name: Run Python Code
 on:
   schedule:
     - cron: '0 11 1 * *'   # Random day 1
-    - cron: '0 11 3 * *'   # Random day 2
+    - cron: '0 11 4 * *'   # Random day 2
     - cron: '0 11 5 * *'   # Random day 3
-    - cron: '0 11 7 * *'   # Random day 4
+    - cron: '0 11 6 * *'   # Random day 4
     - cron: '0 11 9 * *'   # Random day 5
-    - cron: '0 11 11 * *'  # Random day 6
+    - cron: '0 11 10 * *'  # Random day 6
     - cron: '0 11 13 * *'  # Random day 7
-    - cron: '0 11 15 * *'  # Random day 8
+    - cron: '0 11 18 * *'  # Random day 8
     - cron: '0 11 17 * *'  # Random day 9
     - cron: '0 11 19 * *'  # Random day 10
+    - cron: '0 11 20 * *'  # Random day 10
+    - cron: '0 11 25 * *'  # Random day 10
+    - cron: '0 11 29 * *'  # Random day 10
+    - cron: '0 11 28 * *'  # Random day 10
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
