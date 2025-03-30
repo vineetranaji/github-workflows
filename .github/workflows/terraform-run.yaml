@@ -52,7 +52,7 @@ jobs:
         #log_file="github-workflows/logs/terraform-output.log"
         #err_log="github-workflows/logs/terraform-output.log"
         
-        echo "Terraform Validation started at $(date '+%d %b %Y %H:%M:%S')" > "github-workflows/logs/terraform-output.log"
+        echo "Terraform Validation started at $(date '+%d %b %Y %H:%M:%S')" >> "github-workflows/logs/terraform-output.log"
 
         #cd Terraform-day-to-day-Code
         #terraform init -backend=false >> "github-workflows/logs/terraform-output.log" 2>> "github-workflows/logs/terraform-output.log"
