@@ -30,10 +30,10 @@ jobs:
 
     - name: Create or Update Issue Log
       run: |
-        touch issue_log.txt  # Ensure file exists
-        echo "Issue #${{ github.event.issue.number }} - ${{ github.event.issue.title }}" >> issue_log.txt
-        echo "${{ github.event.issue.body }}" >> issue_log.txt
-        echo "------------------------" >> issue_log.txt
+        touch logs/issue_log.txt  # Ensure file exists
+        echo "Issue #${{ github.event.issue.number }} - ${{ github.event.issue.title }}" >> logs/issue_log.txt
+        echo "${{ github.event.issue.body }}" >> logs/issue_log.txt
+        echo "------------------------" >> logs/issue_log.txt
 
     - name: Commit and Push Changes
       env:
@@ -41,6 +41,6 @@ jobs:
       run: |
         git config --global user.name 'Vineet Rana'
         git config --global user.email 'vineetrana2208@gmail.com'   # Use your GitHub email
-        git add issue_log.txt
+        git add logs/issue_log.txt
         git commit -m "Log Issue #${{ github.event.issue.number }}"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Nothing to push"
