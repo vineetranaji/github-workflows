@@ -55,7 +55,7 @@ jobs:
 
         #cd Terraform-day-to-day-Code
         #terraform init -backend=false >> "$log_file" 2>> "$err_log"
-        terraform validate -json >> "$log_file" 2>> "$err_log"
+        terraform validate >> "$log_file" 2>> "$err_log"
 
         echo "Validation completed at $(date '+%d %b %Y %H:%M:%S')" >> "$log_file"
         
@@ -67,9 +67,5 @@ jobs:
         git config --global user.name 'Vineet Rana'
         git config --global user.email 'vineetrana2208@gmail.com'
         git add -f logs/terraform-output.log
-        if git status | grep -q 'Changes to be committed'; then
-          git commit -m "Terraform Validation Logs from GitHub Actions on $(date '+%Y-%m-%d')"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git
-        else
-          echo "No changes to commit"
-        fi
+        git commit -m "Terraform Validation Logs from GitHub Actions on $(date '+%Y-%m-%d')" || echo "No changes to commit"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git || echo "Nothing to push"
