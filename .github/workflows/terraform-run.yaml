@@ -55,10 +55,17 @@ jobs:
 
         #cd Terraform-day-to-day-Code
         #terraform init -backend=false >> "$log_file" 2>> "$err_log"
-        terraform validate >> "$log_file" 2>> "$err_log"
+        terraform validate -json >> "$log_file" 2>> "$err_log"
 
         echo "Validation completed at $(date '+%d %b %Y %H:%M:%S')" >> "$log_file"
+        
+        # Extract detailed validation errors if any
+        if grep -q '"severity": "error"' "$log_file"; then
+          echo "Validation failed! Errors:" >> "$log_file"
+          jq -r '.diagnostics[] | select(.severity=="error") | "\(.summary)\n\(.detail)\n"' "$log_file" >> "$log_file"
+        fi
 
+        echo "Validation completed at $(date '+%d %b %Y %H:%M:%S')" >> "$log_file"
     - name: Commit and Push Logs
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
