@@ -49,13 +49,13 @@ jobs:
       run: |
         mkdir -p github-workflows/logs
         log_file="terraform-output.log"
-        #err_log="github-workflows/logs/terraform_error_$(date '+%Y-%m-%d').log"
+        #err_log="terraform-output.log"
         
         echo "Terraform Validation started at $(date '+%d %b %Y %H:%M:%S')" > "$log_file"
 
         cd Terraform-day-to-day-Code
         #terraform init -backend=false >> "$log_file" 2>> "$err_log"
-        terraform validate >> "$log_file" #2>> "$err_log"
+        terraform validate >> "$log_file" 2>> "$err_log"
 
         echo "Validation completed at $(date '+%d %b %Y %H:%M:%S')" >> "$log_file"
 
@@ -66,8 +66,7 @@ jobs:
         cd github-workflows
         git config --global user.name 'Vineet Rana'
         git config --global user.email 'vineetrana2208@gmail.com'
-        
-        git add logs/*.log
+        git add -f logs/terraform-output.log
         if git status | grep -q 'Changes to be committed'; then
           git commit -m "Terraform Validation Logs from GitHub Actions on $(date '+%Y-%m-%d')"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vineetranaji/github-workflows.git
