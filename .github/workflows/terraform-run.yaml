@@ -47,17 +47,18 @@ jobs:
 
     - name: Run Terraform Validate
       run: |
-        #mkdir -p github-workflows/logs
-        log_file="github-workflows/logs/terraform-output.log"
-        err_log="github-workflows/logs/terraform-output.log"
+        mkdir -p github-workflows/logs
+        echo "$(date '+%d %b %Y at %H:%M')" >> github-workflows/logs/terraform-output.log
+        #log_file="github-workflows/logs/terraform-output.log"
+        #err_log="github-workflows/logs/terraform-output.log"
         
-        echo "Terraform Validation started at $(date '+%d %b %Y %H:%M:%S')" > "$log_file"
+        echo "Terraform Validation started at $(date '+%d %b %Y %H:%M:%S')" > "github-workflows/logs/terraform-output.log"
 
         #cd Terraform-day-to-day-Code
-        #terraform init -backend=false >> "$log_file" 2>> "$err_log"
-        terraform validate >> "$log_file" 2>> "$err_log"
+        #terraform init -backend=false >> "github-workflows/logs/terraform-output.log" 2>> "github-workflows/logs/terraform-output.log"
+        terraform validate >> "github-workflows/logs/terraform-output.log" 2>> "github-workflows/logs/terraform-output.log"
 
-        echo "Validation completed at $(date '+%d %b %Y %H:%M:%S')" >> "$log_file"
+        echo "Validation completed at $(date '+%d %b %Y %H:%M:%S')" >> "github-workflows/logs/terraform-output.log"
         
     - name: Commit and Push Logs
       env:
