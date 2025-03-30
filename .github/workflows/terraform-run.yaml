@@ -49,7 +49,7 @@ jobs:
       run: |
         mkdir -p github-workflows/logs
         log_file="terraform-output.log"
-        #err_log="terraform-output.log"
+        err_log="terraform-output.log"
         
         echo "Terraform Validation started at $(date '+%d %b %Y %H:%M:%S')" > "$log_file"
 
