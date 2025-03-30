@@ -1,4 +1,10 @@
-Terraform Validation started at 30 Mar 2025 05:52:28
-[32m[1mSuccess![0m The configuration is valid.
-[0m
-Validation completed at 30 Mar 2025 05:52:28
+Terraform Validation started at 30 Mar 2025 05:59:22
+{
+  "format_version": "1.0",
+  "valid": true,
+  "error_count": 0,
+  "warning_count": 0,
+  "diagnostics": []
+}
+Validation completed at 30 Mar 2025 05:59:22
+Validation completed at 30 Mar 2025 05:59:22
