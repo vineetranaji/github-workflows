@@ -2,7 +2,7 @@ name: Site Availability Checker
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour
+    - cron: '0 * 1 * *'  
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
