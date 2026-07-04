@@ -3,18 +3,18 @@ name: Terraform Validation
 on:
   schedule:
     - cron: '0 01 1 * *'
-    - cron: '0 12 4 * *'
-    - cron: '0 14 5 * *'
-    - cron: '0 12 6 * *'
-    - cron: '0 12 9 * *'
+   # - cron: '0 12 4 * *'
+    #- cron: '0 14 5 * *'
+    #- cron: '0 12 6 * *'
+    #- cron: '0 12 9 * *'
     - cron: '30 11 10 * *'
-    - cron: '0 12 13 * *'
+    #- cron: '0 12 13 * *'
     - cron: '0 12 17 * *'
-    - cron: '30 11 18 * *'
+    #- cron: '30 11 18 * *'
     - cron: '45 11 19 * *'
-    - cron: '07 11 20 * *'
+   # - cron: '07 11 20 * *'
     - cron: '08 11 25 * *'
-    - cron: '09 11 28 * *'
+   # - cron: '09 11 28 * *'
     - cron: '01 11 29 * *'
   workflow_dispatch:
 
